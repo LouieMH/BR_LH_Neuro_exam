@@ -1,0 +1,25 @@
+INFO:  2023-03-03 09:55:58,117 - sparkmonitorkernel - 61 - MainProcess -         139721210783552 - MainThread
+ Starting Kernel Extension 
+
+INFO:  2023-03-03 09:55:58,171 - sparkmonitorkernel - 61 - MainProcess -         139721210783552 - MainThread
+ Socket Listening on port 55431 
+
+INFO:  2023-03-03 09:55:58,244 - sparkmonitorkernel - 61 - MainProcess -         139711928710848 - Thread-3
+ Starting socket thread, going to accept 
+
+INFO:  2023-03-03 09:55:58,245 - sparkmonitorkernel - 61 - MainProcess -         139721210783552 - MainThread
+ 55431 
+
+INFO:  2023-03-03 09:55:58,280 - sparkmonitorkernel - 61 - MainProcess -         139721210783552 - MainThread
+ Adding jar from /opt/conda/lib/python3.10/site-packages/sparkmonitor/listener.jar  
+
+INFO:  2023-03-03 09:55:58,458 - sparkmonitorkernel - 61 - MainProcess -         139721210783552 - MainThread
+ COMM OPENED MESSAGE: 
+ {'header': {'date': datetime.datetime(2023, 3, 3, 8, 55, 58, 395000, tzinfo=tzutc()), 'msg_id': 'fdcb8599-7ef3-4443-a9e5-ef32be1f229c', 'msg_type': 'comm_open', 'session': '8ec46f05-5fa3-48bd-a443-d087594a9fe3', 'username': '', 'version': '5.2'}, 'msg_id': 'fdcb8599-7ef3-4443-a9e5-ef32be1f229c', 'msg_type': 'comm_open', 'parent_header': {}, 'metadata': {}, 'content': {'comm_id': 'd8e25a4e-710b-4a27-a2d7-79eb29f0bfe6', 'target_name': 'SparkMonitor', 'data': {'msgtype': 'openfromfrontend'}}, 'buffers': []} 
+ 
+
+INFO:  2023-03-03 09:55:58,466 - sparkmonitorkernel - 61 - MainProcess -         139721210783552 - MainThread
+ COMM OPENED MESSAGE: 
+ {'header': {'date': datetime.datetime(2023, 3, 3, 8, 55, 58, 395000, tzinfo=tzutc()), 'msg_id': '97546be1-3624-4fd8-b303-2e392f8cf60f', 'msg_type': 'comm_open', 'session': '8ec46f05-5fa3-48bd-a443-d087594a9fe3', 'username': '', 'version': '5.2'}, 'msg_id': '97546be1-3624-4fd8-b303-2e392f8cf60f', 'msg_type': 'comm_open', 'parent_header': {}, 'metadata': {}, 'content': {'comm_id': '540d8b82-e244-4c05-baec-8d9bb318b8d5', 'target_name': 'SparkMonitor', 'data': {'msgtype': 'openfromfrontend'}}, 'buffers': []} 
+ 
+
