@@ -1,0 +1,119 @@
+---
+title: "Neuro_data_analysis"
+author: "Me"
+date: "2023-06-01"
+output: html_document
+---
+
+```{r}
+#Load packages
+pacman::p_load(tidyverse, dplyr, stats)
+```
+
+```{r}
+#Define working directory
+setwd('.')
+```
+
+
+```{r}
+#Load in data
+L1_df <- read_csv('EEG_data/L1_data(1).csv')
+L2_df <- read_csv('EEG_data/L2_data(1).csv')
+L3_df <- read_csv('EEG_data/L3_data(1).csv')
+L4_df <- read_csv('EEG_data/L4_data(1).csv')
+```
+
+```{r}
+#Notes for the data
+
+#Probably:
+# Level_0 = The epoch number
+# Level_1 = The channel from which the recording originated
+# Level_2 = The time-stamp from the given epoch - 25 per epoch (???)
+# Level_3(L1/L2/L3/L4_data) = The recorded response in micro-volts
+
+```
+
+```{r}
+# Recreate df so that the collumns are 
+# level_0, level_1, level_2, condition, (all)_data
+# This means, append a new collumn to new_(all) df's, and put all the data from the different conditions in the same collumn.
+
+
+#Remove epoch numbers above 25 (matching lowest denominator L3)
+#L1
+new_L1 <- L1_df %>% 
+  filter(level_0 <= 25)
+
+#L2
+new_L2 <- L2_df %>% 
+  filter(level_0 <= 25)
+
+#L3
+new_L3 <- L3_df %>% 
+  filter(level_0 <= 25)
+
+#L4
+new_L4 <- L4_df %>% 
+  filter(level_0 <= 25)
+```
+
+```{r}
+#Creating new df with data from all conditions
+
+df <- new_L1
+df <- bind_cols(df, new_L2['L2_data'], new_L3['L3_data'], new_L4['L4_data'])
+```
+
+```{r}
+#Test of the above mentioned recreated df
+
+x1<-rep(c(1),times=18850)
+x2<-rep(c(2),times=18850)
+x3<-rep(c(3),times=18850)
+x4<-rep(c(4),times=18850)
+
+cond_L1 <- bind_cols(new_L1, 'condition' = x1)
+cond_L2 <- bind_cols(new_L2, 'condition' = x2)
+cond_L3 <- bind_cols(new_L3, 'condition' = x3)
+cond_L4 <- bind_cols(new_L4, 'condition' = x4)
+
+cond_L1 <- cond_L1 %>% 
+  rename(
+    response = L1_data
+  )
+
+cond_L2 <- cond_L2 %>% 
+  rename(
+    response = L2_data
+  )
+
+cond_L3 <- cond_L3 %>% 
+  rename(
+    response = L3_data
+  )
+
+cond_L4 <- cond_L4 %>% 
+  rename(
+    response = L4_data
+  )
+
+new_df <- bind_rows(cond_L1, cond_L2, cond_L3, cond_L4)
+```
+
+
+```{r}
+# Anova test
+new_df$condition <- factor(new_df$condition)
+anova1 <- aov(response ~ condition, data = new_df)
+
+summary(anova1)
+```
+```{r}
+con1 <- new_df[new_df$condition=='1', ]
+con2 <- new_df[new_df$condition=='2', ]
+con3 <- new_df[new_df$condition=='3', ]
+con4 <- new_df[new_df$condition=='4', ]
+```
+
